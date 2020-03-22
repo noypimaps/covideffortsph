@@ -2,12 +2,7 @@
   <div id="app">
     <b-navbar id="covid-nav" class="navbar is-fixed-top">
       <template slot="brand">
-        <img
-          id="covid-logo"
-          src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-          alt="Lightweight UI components for Vue.js based on Bulma"
-          style="height:45px;"
-        />
+        <img id="covid-logo" src="../src/assets/BAYANIHAN.png" style="height:40px;" />
       </template>
       <template slot="start">
         <div class="level-item">
@@ -70,7 +65,7 @@
 }
 
 #covid-logo {
-  margin-top: 10px;
+  margin-top: 5px;
   margin-right: 2px;
 }
 
