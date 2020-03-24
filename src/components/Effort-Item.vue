@@ -1,14 +1,48 @@
 <template>
   <div class="card">
     <div class="card-content">
-      <p id="effort-item-title" class="title">{{ organization }}</p>
-      <p v-if="linkInfo!='No Info'" id="effort-item-link" class="subtitle">
-        <a :href="linkInfo" target="_blank">{{ linkInfo }}</a>
+      <p>
+        <span
+          v-if="orgType != ''"
+          class="tag is-success is-medium"
+          :class="{
+            'is-success': orgType == 'Organization',
+            'is-danger': orgType == 'Hospital',
+            'is-warning': orgType == 'Supplier'
+          }"
+          style="float:right;"
+          >{{ orgType }}</span
+        >
       </p>
+      <p id="effort-item-title" class="title is-3">{{ organization }}</p>
+      <p class="subtitle is-6" style="text-align:left;margin-bottom:2px;">
+        {{ subtitle }}
+      </p>
+      <p
+        v-if="linkInfo != 'No Info'"
+        id="effort-item-link"
+        class="subtitle"
+        style="width:80%;"
+      >
+        <a
+          :href="linkInfo"
+          v-for="link in linkInfo"
+          :key="link.key"
+          target="_blank"
+          style="font-size:15px;"
+          >{{ link }}</a
+        >
+      </p>
+      <br v-else />
       <div class="content" style="text-align:left;">
         <h6 class="subtitle is-6 attr_label">Needs</h6>
         <div class="tags are-medium">
-          <span v-for="need in needsArray" :key="need.key" class="tag is-primary">{{ need }}</span>
+          <span
+            v-for="need in needsArray"
+            :key="need.key"
+            class="tag is-primary"
+            >{{ need }}</span
+          >
         </div>
         <h6 class="subtitle is-6 attr_label">Contact Details</h6>
         <p>
@@ -26,7 +60,7 @@
             <p>{{ type }}</p>
           </div>
         </div> -->
-          <div class="columns">
+        <div class="columns">
           <div class="column is-half">
             <h6 class="subtitle is-6 attr_label">What they do</h6>
             <p>{{ whatTheyDo }}</p>
@@ -45,14 +79,16 @@ export default {
   name: "Effort-Item",
   props: {
     contactDetails: String,
-    linkInfo: String,
+    linkInfo: Array,
     needs: String,
     organization: String,
     severityUrgency: String,
     status: String,
     type: String,
     whatTheyDo: String,
-    whoTheyHelp: String
+    whoTheyHelp: String,
+    orgType: String,
+    subtitle: String
   },
   data() {
     return {
@@ -90,6 +126,8 @@ export default {
 }
 #effort-item-title {
   text-align: left;
+  width: 500px;
+  font-size: 25px;
 }
 #effort-item-link {
   text-align: left;

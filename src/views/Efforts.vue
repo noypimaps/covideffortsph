@@ -13,6 +13,8 @@
         :type="item.TYPE"
         :whatTheyDo="item.WHAT_THEY_DO"
         :whoTheyHelp="item.WHO_THEY_HELP"
+        :orgType="item.ORG_TYPE"
+        :subtitle="item.SUBTITLE"
       ></effort-item>
     </div>
   </div>
@@ -34,8 +36,7 @@ export default {
       // efforts: []
     };
   },
-  methods: {
-  },
+  methods: {},
   created() {
     // this.fetchEfforts();
   },

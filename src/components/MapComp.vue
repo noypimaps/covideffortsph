@@ -1,14 +1,5 @@
 <template>
   <div>
-    <!-- <div>
-      <span v-if="loading">Loading...</span>
-      <label for="checkbox">GeoJSON Visibility</label>
-      <input id="checkbox" v-model="show" type="checkbox" />
-      <label for="checkboxTooltip">Enable tooltip</label>
-      <input id="checkboxTooltip" v-model="enableTooltip" type="checkbox" />
-      <input v-model="fillColor" type="color" />
-      <br />
-    </div> -->
     <l-map
       id="hospitalMap"
       :zoom="zoom"
@@ -16,12 +7,12 @@
       style="height: 639px; width: 43%;position:fixed;"
     >
       <l-tile-layer :url="url" :attribution="attribution" />
-      <l-geo-json
+      <!-- <l-geo-json
         v-if="show"
         :geojson="geojson"
         :options="options"
         :options-style="styleFunction"
-      />
+      /> -->
       <l-marker :lat-lng="marker" />
     </l-map>
   </div>
@@ -30,14 +21,15 @@
 <script>
 import "leaflet/dist/leaflet.css";
 import { latLng } from "leaflet";
-import { LMap, LTileLayer, LMarker, LGeoJson } from "vue2-leaflet";
+// import { LMap, LTileLayer, LMarker, LGeoJson } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 
 export default {
   name: "Map",
   components: {
     LMap,
     LTileLayer,
-    LGeoJson,
+    // LGeoJson,
     LMarker
   },
   data() {
@@ -46,7 +38,7 @@ export default {
       show: true,
       enableTooltip: true,
       zoom: 6,
-      center: [48, -1.219482],
+      center: [14, 121],
       geojson: null,
       fillColor: "#e4ce7f",
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
