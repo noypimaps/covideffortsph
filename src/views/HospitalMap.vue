@@ -1,59 +1,7 @@
 <template>
-  <div class="columns" style="padding-top:6%;">
+  <div class="columns">
     <div class="columns is-multiline is-mobile">
       <div class="column is-half" style="margin-left: 4%;">
-        <div class="level">
-          <div class="field is-grouped is-grouped-multiline">
-            <div class="control">
-              <div class="tags has-addons">
-                <a class="tag is-link">Technology</a>
-                <a class="tag is-delete"></a>
-              </div>
-            </div>
-
-            <div class="control">
-              <div class="tags has-addons">
-                <a class="tag is-link">CSS</a>
-                <a class="tag is-delete"></a>
-              </div>
-            </div>
-
-            <div class="control">
-              <div class="tags has-addons">
-                <a class="tag is-link">Flexbox</a>
-                <a class="tag is-delete"></a>
-              </div>
-            </div>
-
-            <div class="control">
-              <div class="tags has-addons">
-                <a class="tag is-link">Web Design</a>
-                <a class="tag is-delete"></a>
-              </div>
-            </div>
-
-            <div class="control">
-              <div class="tags has-addons">
-                <a class="tag is-link">Open Source</a>
-                <a class="tag is-delete"></a>
-              </div>
-            </div>
-
-            <div class="control">
-              <div class="tags has-addons">
-                <a class="tag is-link">Community</a>
-                <a class="tag is-delete"></a>
-              </div>
-            </div>
-
-            <div class="control">
-              <div class="tags has-addons">
-                <a class="tag is-link">Documentation</a>
-                <a class="tag is-delete"></a>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="level" style="display:block;padding:1%;" id="hospitalCards">
           <hospital-needs-item></hospital-needs-item>
           <hospital-needs-item></hospital-needs-item>

@@ -1,42 +1,100 @@
 <template>
   <div class="card">
     <div class="card-content">
-      <p class="title">
-        “There are two hard things in computer science: cache invalidation,
-        naming things, and off-by-one errors.”
+      <p id="effort-item-title" class="title">{{ organization }}</p>
+      <p v-if="linkInfo!='No Info'" id="effort-item-link" class="subtitle">
+        <a :href="linkInfo" target="_blank">{{ linkInfo }}</a>
       </p>
-      <p class="subtitle">
-        Jeff Atwood
-      </p>
+      <div class="content" style="text-align:left;">
+        <h6 class="subtitle is-6 attr_label">Needs</h6>
+        <div class="tags are-medium">
+          <span v-for="need in needsArray" :key="need.key" class="tag is-primary">{{ need }}</span>
+        </div>
+        <h6 class="subtitle is-6 attr_label">Contact Details</h6>
+        <p>
+          <span v-html="parsedContactDetails"></span>
+        </p>
+        <!-- <h6 class="subtitle is-6 attr_label">Urgency</h6>
+            <p>{{ severityUrgency }}</p> -->
+        <!-- <div class="columns">
+          <div class="column is-half">
+            <h6 class="subtitle is-6 attr_label">Status</h6>
+            <p>{{ status }}</p>
+          </div>
+          <div class="column is-half">
+            <h6 class="subtitle is-6 attr_label">Type</h6>
+            <p>{{ type }}</p>
+          </div>
+        </div> -->
+          <div class="columns">
+          <div class="column is-half">
+            <h6 class="subtitle is-6 attr_label">What they do</h6>
+            <p>{{ whatTheyDo }}</p>
+          </div>
+          <div class="column is-half">
+            <h6 class="subtitle is-6 attr_label">Who they help</h6>
+            <p>{{ whoTheyHelp }}</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <footer class="card-footer">
-      <p class="card-footer-item">
-        <span>
-          View on
-          <a href="https://twitter.com/codinghorror/status/506010907021828096"
-            >Twitter</a
-          >
-        </span>
-      </p>
-      <p class="card-footer-item">
-        <span> Share on <a href="#">Facebook</a> </span>
-      </p>
-    </footer>
   </div>
 </template>
-<script lang="ts">
+<script>
 export default {
   name: "Effort-Item",
   props: {
-    msg: String
+    contactDetails: String,
+    linkInfo: String,
+    needs: String,
+    organization: String,
+    severityUrgency: String,
+    status: String,
+    type: String,
+    whatTheyDo: String,
+    whoTheyHelp: String
   },
   data() {
-    return {};
+    return {
+      needsArray: []
+    };
   },
-  methods: {}
-  // mounted() {}
+  computed: {
+    parsedContactDetails: function() {
+      // `this` points to the vm instance
+      // console.log(this.contactDetails);
+      return this.contactDetails.replace(/(?:\r\n|\r|\n)/g, "<br />");
+    }
+  },
+  methods: {
+    needstoArray: function() {
+      const needsArr = this.needs.split(",");
+      this.needsArray = needsArr;
+    }
+  },
+  filters: {
+    newLinesParse: function(value) {
+      return value.replace(/(?:\r\n|\r|\n)/g, "<br />");
+    }
+  },
+  mounted() {
+    this.needstoArray();
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.card {
+  margin-bottom: 20px;
+}
+#effort-item-title {
+  text-align: left;
+}
+#effort-item-link {
+  text-align: left;
+}
+.attr_label {
+  margin-bottom: 7px !important;
+}
+</style>
