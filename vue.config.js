@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/covid-efforts-ph/'
-    }
+  publicPath: "/covid-efforts-ph/"
+};
