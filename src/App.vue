@@ -53,10 +53,11 @@
             >.
           </p>
           <i>Thanks awesome people!</i>
+
+          
         </section>
         <footer class="modal-card-foot">
-          <!-- <button class="button is-success">Save changes</button>
-      <button class="button">Cancel</button> -->
+          <i style="font-size:10px;">Last data update {{dateLastUpdate}}</i>
         </footer>
       </div>
     </div>
@@ -240,7 +241,8 @@ export default {
       welcomeModal: true,
       effortsView: true,
       hospitalMapView: false,
-      hospitalCount: 0
+      hospitalCount: 0,
+      dateLastUpdate:"03252020"
     };
   },
   methods: {

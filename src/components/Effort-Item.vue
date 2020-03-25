@@ -53,16 +53,16 @@
         </p>
         <!-- <h6 class="subtitle is-6 attr_label">Urgency</h6>
             <p>{{ severityUrgency }}</p> -->
-        <!-- <div class="columns">
+        <div v-if="orgType=='Supplier'" class="columns">
           <div class="column is-half">
-            <h6 class="subtitle is-6 attr_label">Status</h6>
+            <h6 class="subtitle is-6 attr_label">Pricing</h6>
             <p>{{ status }}</p>
           </div>
-          <div class="column is-half">
+          <!-- <div class="column is-half">
             <h6 class="subtitle is-6 attr_label">Type</h6>
             <p>{{ type }}</p>
-          </div>
-        </div> -->
+          </div> -->
+        </div>
         <div class="columns">
           <div class="column is-half">
             <h6 class="subtitle is-6 attr_label">What they do</h6>
