@@ -35,7 +35,8 @@
       </p>
       <br v-else />
       <div class="content" style="text-align:left;">
-        <h6 class="subtitle is-6 attr_label">Needs</h6>
+        <h6 v-if="orgType!='Supplier'" class="subtitle is-6 attr_label">Needs</h6>
+        <h6 v-else class="subtitle is-6 attr_label">Provides</h6>
         <div class="tags are-medium">
           <span
             v-for="need in needsArray"
