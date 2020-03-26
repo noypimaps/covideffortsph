@@ -23,6 +23,13 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### Deployment in GH Pages
+1. Run `npm run build`.
+2. Copy the created files by `npm run build` the contents of the `dist` directory. 
+3. Switch to branch gh-pages.
+4. Paste to the repository of `gh-pages`.
+5. Add, commit and push to `gh-pages`.
+
 # Data Schema
   {
     "CONTACT_DETAILS": "Long Text/Paragraph",
