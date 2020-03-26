@@ -1,7 +1,18 @@
 <template>
   <div class="card">
     <div class="card-content">
-      <p>
+      
+    <b-taglist attached style="float:right;">
+        <b-tag  v-if="orgType != ''"
+          class="tag is-success is-medium"
+          :class="{
+            'is-success': orgType == 'Organization',
+            'is-danger': orgType == 'Hospital',
+            'is-warning': orgType == 'Supplier'
+          }">{{ orgType }}</b-tag>
+        <b-tag type="is-info is-medium">{{ type }}</b-tag>
+    </b-taglist>
+      <!-- <p>
         <span
           v-if="orgType != ''"
           class="tag is-success is-medium"
@@ -11,27 +22,44 @@
             'is-warning': orgType == 'Supplier'
           }"
           style="float:right;"
-          >{{ orgType }}</span
-        >
-      </p>
+          >{{ orgType }}</span>
+          <span
+          v-if="orgType != ''"
+          class="tag is-success is-medium"
+          :class="{
+            'is-success': orgType == 'Organization',
+
+          }"
+          style="float:right;"
+          >{{ type }}</span>
+      </p> -->
+
       <p id="effort-item-title" class="title is-3">{{ organization }}</p>
       <p class="subtitle is-6" style="text-align:left;margin-bottom:2px;">
         {{ subtitle }}
       </p>
       <p
-        v-if="linkInfo != 'No Info'"
+        v-if="linkInfo != 'No Info'||linkInfo != ''"
         id="effort-item-link"
         class="subtitle"
         style="width:80%;"
       >
         <a
-          :href="linkInfo"
+          
           v-for="link in linkInfo"
+          :href="link"
           :key="link.key"
           target="_blank"
-          style="font-size:15px;"
-          >{{ link }}</a
-        >
+          style="font-size:12px;max-width:80%;"
+          class="buttons"
+          >
+          <!-- <b-button class="is-light" size="is-small" v-for="link in linkInfo"
+          :href="link"
+          :key="link.key"
+          target="_blank"> -->
+          {{link}}
+          <!-- </b-button> -->
+          </a>
       </p>
       <br v-else />
       <div class="content" style="text-align:left;">
@@ -129,7 +157,7 @@ export default {
 }
 #effort-item-title {
   text-align: left;
-  width: 500px;
+  width: 80%;
   font-size: 25px;
 }
 #effort-item-link {
