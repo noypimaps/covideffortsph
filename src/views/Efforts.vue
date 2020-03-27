@@ -2,8 +2,9 @@
   <div ref="efforts" class="container">
     <div class="level" id="efforts">
       <effort-item
-        v-for="item in efforts"
+        v-for="(item, index) in efforts"
         :key="item.key"
+        :elementID="index"
         :contactDetails="item.CONTACT_DETAILS"
         :linkInfo="item.LINK_FOR_MORE_INFO"
         :needs="item.NEEDS"
@@ -15,6 +16,7 @@
         :whoTheyHelp="item.WHO_THEY_HELP"
         :orgType="item.ORG_TYPE"
         :subtitle="item.SUBTITLE"
+        :latLng="item.LAT_LNG"
       ></effort-item>
     </div>
   </div>

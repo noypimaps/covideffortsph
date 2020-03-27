@@ -13,7 +13,21 @@
         :options="options"
         :options-style="styleFunction"
       /> -->
-      <l-marker :lat-lng="marker" />
+      <l-circle-marker
+        v-for="hospital in hospitalsWithLocation"
+        :key="hospital.key"
+        :lat-lng="hospital.LAT_LNG"
+        :radius="5"
+        color="red"
+        @click="hospitalMarkerClicked($event)"
+      />
+      <l-circle-marker
+        :lat-lng="highlightCoords"
+        :radius="8"
+        fillColor="blue"
+        color="blue"
+        :visible="highlightMarkerVisibility"
+      />
     </l-map>
   </div>
 </template>
@@ -22,7 +36,7 @@
 import "leaflet/dist/leaflet.css";
 import { latLng } from "leaflet";
 // import { LMap, LTileLayer, LMarker, LGeoJson } from "vue2-leaflet";
-import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+import { LMap, LTileLayer, LCircleMarker } from "vue2-leaflet";
 
 export default {
   name: "Map",
@@ -30,22 +44,46 @@ export default {
     LMap,
     LTileLayer,
     // LGeoJson,
-    LMarker
+    // LMarker,
+    LCircleMarker
+  },
+  props: {
+    hospitalNeeds: Array,
+    highlightCoords: Array,
+    zoom: Number,
+    center: Array,
+    highlightMarkerVisibility: Boolean
   },
   data() {
     return {
       loading: false,
       show: true,
       enableTooltip: true,
-      zoom: 6,
-      center: [14, 121],
+      // zoom: 6,
+      // center: [14, 121],
       geojson: null,
       fillColor: "#e4ce7f",
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      marker: latLng(47.41322, -1.219482)
+      marker: latLng(47.41322, -1.219482),
+      hospitalsWithLocation: []
     };
+  },
+  methods: {
+    withLocation: function() {
+      this.hospitalsWithLocation = [];
+      const hospitalsLoc = [];
+      this.hospitalNeeds.forEach(hospital => {
+        if (hospital.LAT_LNG != null) {
+          hospitalsLoc.push(hospital);
+        }
+        this.hospitalsWithLocation = hospitalsLoc;
+      });
+    },
+    hospitalMarkerClicked: function(event) {
+      console.log(event);
+    }
   },
   computed: {
     options() {
@@ -82,6 +120,9 @@ export default {
         );
       };
     }
+  },
+  mounted() {
+    this.withLocation();
   },
   async created() {
     this.loading = true;

@@ -1,17 +1,28 @@
 <template>
-  <div class="card">
+  <div
+    class="card"
+    :class="{ card_highlight: highlightFlag }"
+    :id="String(elementID) + '_' + type"
+    @mouseover="
+      highlightFlag = true;
+      $emit('onEffortCardClick', { elementID, type, latLng });
+    "
+    @mouseout="highlightFlag = false"
+  >
     <div class="card-content">
-      
-    <b-taglist attached style="float:right;">
-        <b-tag  v-if="orgType != ''"
+      <b-taglist attached style="float:right;">
+        <b-tag
+          v-if="orgType != ''"
           class="tag is-success is-medium"
           :class="{
             'is-success': orgType == 'Organization',
             'is-danger': orgType == 'Hospital',
             'is-warning': orgType == 'Supplier'
-          }">{{ orgType }}</b-tag>
+          }"
+          >{{ orgType }}</b-tag
+        >
         <b-tag type="is-info is-medium">{{ type }}</b-tag>
-    </b-taglist>
+      </b-taglist>
       <!-- <p>
         <span
           v-if="orgType != ''"
@@ -39,27 +50,26 @@
         {{ subtitle }}
       </p>
       <p
-        v-if="linkInfo != 'No Info'||linkInfo != ''"
+        v-if="linkInfo != 'No Info' || linkInfo != ''"
         id="effort-item-link"
         class="subtitle"
         style="width:80%;"
       >
         <a
-          
           v-for="link in linkInfo"
           :href="link"
           :key="link.key"
           target="_blank"
           style="font-size:12px;max-width:80%;"
           class="buttons"
-          >
+        >
           <!-- <b-button class="is-light" size="is-small" v-for="link in linkInfo"
           :href="link"
           :key="link.key"
           target="_blank"> -->
-          {{link}}
+          {{ link }}
           <!-- </b-button> -->
-          </a>
+        </a>
       </p>
       <br v-else />
       <div class="content" style="text-align:left;">
@@ -81,7 +91,7 @@
         </p>
         <!-- <h6 class="subtitle is-6 attr_label">Urgency</h6>
             <p>{{ severityUrgency }}</p> -->
-        <div v-if="orgType=='Supplier'" class="columns">
+        <div v-if="orgType == 'Supplier'" class="columns">
           <div class="column is-half">
             <h6 class="subtitle is-6 attr_label">Pricing</h6>
             <p>{{ status }}</p>
@@ -109,6 +119,7 @@
 export default {
   name: "Effort-Item",
   props: {
+    elementID: Number,
     contactDetails: String,
     linkInfo: Array,
     needs: String,
@@ -119,11 +130,13 @@ export default {
     whatTheyDo: String,
     whoTheyHelp: String,
     orgType: String,
-    subtitle: String
+    subtitle: String,
+    latLng: Array
   },
   data() {
     return {
-      needsArray: []
+      needsArray: [],
+      highlightFlag: false
     };
   },
   computed: {
@@ -138,6 +151,10 @@ export default {
       const needsArr = this.needs.split(",");
       this.needsArray = needsArr;
     }
+    // onEffortCardClick: function(event,indentifierObj) {
+    //   console.log(event);
+    //   console.log(indentifierObj);
+    // }
   },
   filters: {
     newLinesParse: function(value) {
@@ -154,6 +171,11 @@ export default {
 <style scoped lang="less">
 .card {
   margin-bottom: 20px;
+  cursor: pointer;
+}
+.card_highlight {
+  box-shadow: 0 2px 3px rgba(121, 87, 213, 0.8),
+    0 0 0 1px rgba(121, 87, 213, 0.25);
 }
 #effort-item-title {
   text-align: left;

@@ -26,7 +26,7 @@
           <br />
           <p>
             The aim of #BAYANIHAN is to collate the efforts/calls against
-            #COVID19 that Filipino communities all over the countries have
+            #COVID19 that Filipino communities all over the country have
             started.
           </p>
           <br />
@@ -53,15 +53,14 @@
             >.
           </p>
           <i>Thanks awesome people!</i>
-
-          
         </section>
         <footer class="modal-card-foot">
-          <i style="font-size:10px;">Last data update {{dateLastUpdate}}</i>
+          <i style="font-size:10px;">Last data update {{ dateLastUpdate }}</i>
         </footer>
       </div>
     </div>
-    <div class="modal" :class="{ 'is-active': hospitalMapView }">
+    <!-- <div class="modal" :class="{ 'is-active': hospitalMapView }"> -->
+    <div class="modal" :class="{ 'is-active': false }">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
@@ -242,7 +241,7 @@ export default {
       effortsView: true,
       hospitalMapView: false,
       hospitalCount: 0,
-      dateLastUpdate:"03252020"
+      dateLastUpdate: "03252020"
     };
   },
   methods: {
