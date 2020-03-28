@@ -41,7 +41,7 @@
 
 <script>
 // @ is an alias to /src
-import HospitalNeedsItem from "@/components/Effort-Item.vue";
+import HospitalNeedsItem from "@/components/Hospital-Needs-Item.vue";
 import MapComp from "@/components/MapComp.vue";
 
 export default {

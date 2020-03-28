@@ -31,6 +31,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 5. Add, commit and push to `gh-pages`.
 
 # Data Schema
+  """
   {
     "CONTACT_DETAILS": "Long Text/Paragraph",
     "LINK_FOR_MORE_INFO": "Array of links/urls",
@@ -43,4 +44,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     "Type": "Choose Frontliner, Families, Public, Supplier, Testing kit and PUI,Other Service Personel",
     "WHAT_THEY_DO": "Description of what they do",
     "WHO_THEY_HELP": "Who are they beneficiary of this cause"
-  },
+  }
+  """,
