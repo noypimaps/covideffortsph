@@ -19,11 +19,14 @@
             'is-danger': orgType == 'Hospital',
             'is-warning': orgType == 'Supplier'
           }"
-        >{{ orgType }}</b-tag>
+          >{{ orgType }}</b-tag
+        >
         <b-tag type="is-info is-medium">{{ type }}</b-tag>
       </b-taglist>
       <p id="effort-item-title" class="title is-3">{{ organization }}</p>
-      <p class="subtitle is-6" style="text-align:left;margin-bottom:2px;">{{ subtitle }}</p>
+      <p class="subtitle is-6" style="text-align:left;margin-bottom:2px;">
+        {{ subtitle }}
+      </p>
       <p
         v-if="linkInfo != 'No Info' || linkInfo != ''"
         id="effort-item-link"
@@ -39,15 +42,19 @@
           class="buttons"
         >
           {{ link }}
-          
         </a>
       </p>
       <br v-else />
       <div class="content" style="text-align:left;">
         <h6 v-if="orgType != 'Supplier'" class="subtitle is-6 attr_label"></h6>
         <h6 v-else class="subtitle is-6 attr_label">Provides</h6>
-        <div class="tags are-medium">
-          <span v-for="need in needsArray" :key="need.key" class="tag is-primary">{{ need }}</span>
+        <div class="tags are-small">
+          <span
+            v-for="need in needsArray"
+            :key="need.key"
+            class="tag is-primary"
+            >{{ need }}</span
+          >
         </div>
         <h6 class="subtitle is-6 attr_label">Contact</h6>
         <p>
@@ -71,11 +78,14 @@
             <p>{{ whatTheyDo }}</p>
           </div>
         </div>
-        <div class="columns">
+        <div v-if="needsItemized.length>=1" class="columns">
           <div class="column is-full">
-            <h6 class="subtitle is-6 attr_label">Itemized Needs</h6>
-            <p style="font-size=12px;margin-bottom:2px;"><i>PPE Sets</i></p>           
-            <b-progress type="is-success" :value="75" size="is-medium" show-value>75 / 100</b-progress>
+            <h6 class="subtitle is-6 attr_label">Itemized Needs <b-tag type="is-dark is-small is-rounded">{{ needsItemized.length }}</b-tag> </h6>
+            <hospital-needs-item-quantity
+              v-for="needsItem in needsItemized"
+              :key="needsItem.key"
+              :itemizedNeed="needsItem"
+            ></hospital-needs-item-quantity>
           </div>
         </div>
       </div>
@@ -84,13 +94,15 @@
 </template>
 <script>
 import HospitalNeedsItemQuantity from "@/components/Hospital-Needs-Item-Quantity.vue";
+
 export default {
-  name: "Effort-Item",
+  name: "Hospital-Needs-Item",
   props: {
     elementID: Number,
     contactDetails: String,
     linkInfo: Array,
     needs: String,
+    needsItemized: Array,
     organization: String,
     severityUrgency: String,
     status: String,
@@ -131,6 +143,9 @@ export default {
   },
   mounted() {
     this.needstoArray();
+  },
+  components: {
+    "hospital-needs-item-quantity": HospitalNeedsItemQuantity
   }
 };
 </script>

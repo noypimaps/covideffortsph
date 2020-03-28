@@ -11,6 +11,7 @@
             :contactDetails="item.CONTACT_DETAILS"
             :linkInfo="item.LINK_FOR_MORE_INFO"
             :needs="item.NEEDS"
+            :needsItemized="item.NEEDS_ITEMIZED"
             :organization="item.ORGANIZATION"
             :severityUrgency="item.SEVERITY_URGENCY"
             :status="item.STATUS"
@@ -55,7 +56,7 @@ export default {
       highlightCoords: [14, 121],
       highlightZoom: 6,
       highlightMarkerVisibility: false,
-      centerCoords:[14,121]
+      centerCoords: [14, 121]
     };
   },
   props: {
@@ -67,13 +68,13 @@ export default {
       if ($event.latLng != undefined) {
         // console.log("not undefined");
         this.highlightCoords = $event.latLng;
-        this.centerCoords =  $event.latLng;
+        this.centerCoords = $event.latLng;
         this.highlightZoom = 10;
         this.highlightMarkerVisibility = true;
       } else {
         // console.log("undefined");
         this.highlightCoords = [14, 121];
-        this.centerCoords = [14, 121]; 
+        this.centerCoords = [14, 121];
         this.highlightZoom = 6;
         this.highlightMarkerVisibility = false;
         // console.log(this.highlightCoords);
@@ -83,10 +84,10 @@ export default {
       // console.log("here in hospital map vue");
     }
   },
-  mounted(){
+  mounted() {
     // console.log((this.efforts[0]).LAT_LNG);
-    this.highlightCoords=(this.efforts[0]).LAT_LNG;
-    this.centerCoords=(this.efforts[0]).LAT_LNG;
+    this.highlightCoords = this.efforts[0].LAT_LNG;
+    this.centerCoords = this.efforts[0].LAT_LNG;
   }
 };
 </script>
